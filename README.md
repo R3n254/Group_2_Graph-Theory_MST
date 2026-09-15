@@ -41,7 +41,7 @@ It initially treats every vertex as a separate component. In each phase, every c
 
 ---
 
-3. Instructions
+## 3. Instructions
 3.1 Compile the Programs
 
 Open a terminal in the repository folder and run:
