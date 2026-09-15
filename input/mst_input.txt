@@ -1,10 +1,5 @@
-### Kruskal's and Borůvka's Algorithms
-
 Both Kruskal's and Borůvka's Algorithms use the same input file:
 
-`input/mst_input.txt`
-
-```text
 7
 9
 A G 5
