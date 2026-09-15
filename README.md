@@ -33,22 +33,70 @@ It initially treats every vertex as a separate component. In each phase, every c
 
 ## 2. Prerequisites
 
-* Python 3.x
-* No external libraries are required.
+* C++ compiler supporting C++11 or later
+* No external libraries are required
+* A terminal or command prompt
+* The programs accept graph data through manual terminal input
+
 
 ---
 
-## 3. Instructions to Run the Code
+3. Instructions
+3.1 Compile the Programs
 
-The implementations are located in the `src/` directory.
+Open a terminal in the repository folder and run:
 
-The sample input is provided in the `input/` directory.
+g++ src/prim.cpp -o prim
+g++ src/kruskal.cpp -o kruskal
+g++ src/boruvka.cpp -o boruvka
+3.2 Run Prim's Algorithm
+./prim
 
-### Prim's Algorithm
+On Windows:
 
-```bash
-python src/prim.py
-```
+prim.exe
+
+The program will ask for:
+
+Number of vertices
+Number of edges
+Each edge in the format FROM TO WEIGHT
+Starting vertex
+
+Example:
+
+7
+9
+A G 5
+C B 5
+F E 5
+E D 5
+G F 6
+A C 6
+C E 7
+B D 8
+A D 10
+A
+3.3 Run Kruskal's Algorithm
+./kruskal
+
+On Windows:
+
+kruskal.exe
+
+Enter the number of vertices, number of edges, and each edge in the format:
+
+FROM TO WEIGHT
+3.4 Run Borůvka's Algorithm
+./boruvka
+
+On Windows:
+
+boruvka.exe
+
+Enter the number of vertices, number of edges, and each edge in the format:
+
+FROM TO WEIGHT
 
 ### Kruskal's Algorithm
 
@@ -64,84 +112,67 @@ python src/boruvka.py
 
 ---
 
-## 4. Result of Sample Run
+## 4. Sample Run Result
 
-For the original graph, all three algorithms produce a valid Minimum Spanning Tree with a total cost of **32**.
+### 4.1 Prim's Algorithm
 
-### Prim's Algorithm
+For the sample graph, using vertex `A` as the starting vertex:
 
-Starting vertex: **A**
+```text
+Prim's Algorithm
+Starting vertex: A
 
-Selected edges:
+A-G = 5
+G-F = 6
+F-E = 5
+E-D = 5
+A-C = 6
+C-B = 5
 
-1. A–G (5)
-2. G–F (6)
-3. F–E (5)
-4. E–D (5)
-5. A–C (6)
-6. C–B (5)
+Total MST cost: 32
+```
 
-**Total MST cost: 32**
+### 4.2 Kruskal's Algorithm
 
-### Kruskal's Algorithm
+```text
+Kruskal's Algorithm
 
-Accepted edges:
+A-G = 5 (Accepted)
+C-B = 5 (Accepted)
+F-E = 5 (Accepted)
+E-D = 5 (Accepted)
+G-F = 6 (Accepted)
+A-C = 6 (Accepted)
 
-1. A–G (5)
-2. C–B (5)
-3. F–E (5)
-4. E–D (5)
-5. G–F (6)
-6. A–C (6)
+Total MST cost: 32
+```
 
-**Total MST cost: 32**
+### 4.3 Borůvka's Algorithm
 
-### Borůvka's Algorithm
+```text
+Boruvka's Algorithm
 
-Borůvka's Algorithm completes in two phases.
+Phase 1:
+A-G = 5 (Accepted)
+B-C = 5 (Accepted)
+D-E = 5 (Accepted)
+E-F = 5 (Accepted)
 
-The final MST contains six edges with a total cost of:
+Phase 2:
+G-F = 6 (Accepted)
+C-A = 6 (Accepted)
 
-**Total MST cost: 32**
+Total MST cost: 32
+```
 
-### Failure Simulation
+### 4.4 Failure Simulation
 
-| Problem         | Prim's | Kruskal's | Borůvka's |
-| --------------- | -----: | --------: | --------: |
-| Original graph  |     32 |        32 |        32 |
-| Edge A–G failed |     34 |        34 |        34 |
-| Node G failed   |     28 |        28 |        28 |
+| Condition        | MST Total Cost |
+| ---------------- | -------------: |
+| Original Graph   |             32 |
+| Edge A-G Failure |             34 |
+| Node G Failure   |             28 |
 
-#### Edge Failure: A–G
-
-When edge A–G with weight 5 is unavailable, the failed edge is removed from the graph. The algorithms then reconstruct an MST using the remaining edges.
-
-One valid replacement MST is:
-
-* C–B (5)
-* F–E (5)
-* E–D (5)
-* G–F (6)
-* A–C (6)
-* C–E (7)
-
-**Total cost: 34**
-
-#### Node Failure: G
-
-When vertex G fails, vertex G and all edges incident to it are removed from the graph.
-
-The remaining vertices are A, B, C, D, E, and F.
-
-One valid MST is:
-
-* C–B (5)
-* F–E (5)
-* E–D (5)
-* A–C (6)
-* C–E (7)
-
-**Total cost: 28**
 
 ---
 
