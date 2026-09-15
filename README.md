@@ -33,36 +33,26 @@ It initially treats every vertex as a separate component. In each phase, every c
 
 ## 2. Prerequisites
 
-* Python 3.x
-* No external libraries are required.
+- A C++ compiler that supports C++11 or later.
+- No external libraries are required.
+- The programs can be run manually by entering the graph data through the terminal.
 
 ---
 
 ## 3. Instructions to Run the Code
 
-The implementations are located in the `src/` directory.
+The C++ implementations are located in the `src/` directory.
 
-The sample input is provided in the `input/` directory.
+The programs accept graph input manually through the terminal.
 
-### Prim's Algorithm
+### Compile the Programs
 
-```bash
-python src/prim.py
-```
-
-### Kruskal's Algorithm
+Open a terminal in the root directory of the repository and run:
 
 ```bash
-python src/kruskal.py
-```
-
-### Borůvka's Algorithm
-
-```bash
-python src/boruvka.py
-```
-
----
+g++ src/prim.cpp -o prim
+g++ src/kruskal.cpp -o kruskal
+g++ src/boruvka.cpp -o boruvka
 
 ## 4. Result of Sample Run
 
