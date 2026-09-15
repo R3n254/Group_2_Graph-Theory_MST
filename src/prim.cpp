@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-#include <fstream>
 using namespace std;
 
 struct Edge {
@@ -10,23 +9,25 @@ struct Edge {
 };
 
 int main() {
-    ifstream file("input/sample.txt");
-
-    if (!file) {
-        cerr << "Error: Could not open input/sample.txt\n";
-        return 1;
-    }
-
     int V, E;
-    file >> V >> E;
+
+    cout << "Enter number of vertices: ";
+    cin >> V;
+
+    cout << "Enter number of edges: ";
+    cin >> E;
 
     vector<vector<Edge>> graph(V);
+
+    cout << "\nEnter each edge as: FROM TO WEIGHT\n";
+    cout << "Example: A G 5\n\n";
 
     for (int i = 0; i < E; i++) {
         char from, to;
         int weight;
 
-        file >> from >> to >> weight;
+        cout << "Edge " << i + 1 << ": ";
+        cin >> from >> to >> weight;
 
         int u = from - 'A';
         int v = to - 'A';
@@ -34,6 +35,13 @@ int main() {
         graph[u].push_back({v, weight});
         graph[v].push_back({u, weight});
     }
+
+    char startVertex;
+
+    cout << "\nEnter starting vertex for Prim's Algorithm: ";
+    cin >> startVertex;
+
+    int start = startVertex - 'A';
 
     vector<bool> visited(V, false);
 
@@ -43,14 +51,13 @@ int main() {
         greater<pair<int, pair<int, int>>>
     > pq;
 
-    int start = 0; // Start from vertex A
-
     pq.push({0, {start, -1}});
 
     int totalCost = 0;
+    int edgeCount = 0;
 
-    cout << "Prim's Algorithm\n";
-    cout << "Starting vertex: A\n\n";
+    cout << "\nPrim's Algorithm\n";
+    cout << "Starting vertex: " << startVertex << "\n\n";
 
     while (!pq.empty()) {
         auto current = pq.top();
@@ -69,9 +76,11 @@ int main() {
             cout << char('A' + parent)
                  << "-"
                  << char('A' + u)
-                 << " = " << weight << '\n';
+                 << " = "
+                 << weight << "\n";
 
             totalCost += weight;
+            edgeCount++;
         }
 
         for (const auto& edge : graph[u]) {
@@ -84,7 +93,11 @@ int main() {
         }
     }
 
-    cout << "\nTotal MST cost: " << totalCost << '\n';
+    if (edgeCount != V - 1) {
+        cout << "\nGraph is disconnected. MST cannot be formed.\n";
+    } else {
+        cout << "\nTotal MST cost: " << totalCost << "\n";
+    }
 
     return 0;
 }
