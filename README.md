@@ -158,3 +158,5 @@ AI was used during the preparation of this assignment to help understand the ass
 2. "Is Boruvka's Algorithm usable in this case?"
 
 3. "Make a readme file for my repository based on this report [ Group_2.pdf]."
+   
+4. "help me build the c++ solution and input samples for each algorithm."
