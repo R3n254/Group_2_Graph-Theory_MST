@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <fstream>
 using namespace std;
 
 struct Edge {
@@ -55,23 +54,25 @@ public:
 };
 
 int main() {
-    ifstream file("input/sample.txt");
-
-    if (!file) {
-        cerr << "Error: Could not open input/sample.txt\n";
-        return 1;
-    }
-
     int V, E;
-    file >> V >> E;
+
+    cout << "Enter number of vertices: ";
+    cin >> V;
+
+    cout << "Enter number of edges: ";
+    cin >> E;
 
     vector<Edge> edges;
+
+    cout << "\nEnter each edge as: FROM TO WEIGHT\n";
+    cout << "Example: A G 5\n\n";
 
     for (int i = 0; i < E; i++) {
         char from, to;
         int weight;
 
-        file >> from >> to >> weight;
+        cout << "Edge " << i + 1 << ": ";
+        cin >> from >> to >> weight;
 
         edges.push_back({
             from - 'A',
@@ -85,12 +86,14 @@ int main() {
     int totalCost = 0;
     int components = V;
     int phase = 1;
+    int edgeCount = 0;
 
-    cout << "Boruvka's Algorithm\n\n";
+    cout << "\nBoruvka's Algorithm\n\n";
 
     while (components > 1) {
         vector<int> cheapest(V, -1);
 
+        // Find cheapest outgoing edge for each component
         for (int i = 0; i < E; i++) {
             int u = edges[i].u;
             int v = edges[i].v;
@@ -134,24 +137,25 @@ int main() {
                      << char('A' + edge.v)
                      << " = "
                      << edge.weight
-                     << '\n';
+                     << " (Accepted)\n";
 
                 totalCost += edge.weight;
                 components--;
+                edgeCount++;
                 merged = true;
             }
         }
 
         if (!merged) {
-            cout << "Graph is disconnected.\n";
+            cout << "\nGraph is disconnected. MST cannot be formed.\n";
             return 1;
         }
 
+        cout << "\n";
         phase++;
-        cout << '\n';
     }
 
-    cout << "Total MST cost: " << totalCost << '\n';
+    cout << "Total MST cost: " << totalCost << "\n";
 
     return 0;
 }
