@@ -42,14 +42,14 @@ It initially treats every vertex as a separate component. In each phase, every c
 ---
 
 ## 3. Instructions
-3.1 Compile the Programs
+### 3.1 Compile the Programs
 
 Open a terminal in the repository folder and run:
 
 g++ src/prim.cpp -o prim
 g++ src/kruskal.cpp -o kruskal
 g++ src/boruvka.cpp -o boruvka
-3.2 Run Prim's Algorithm
+### 3.2 Run Prim's Algorithm
 ./prim
 
 On Windows:
@@ -77,7 +77,7 @@ C E 7
 B D 8
 A D 10
 A
-3.3 Run Kruskal's Algorithm
+### 3.3 Run Kruskal's Algorithm
 ./kruskal
 
 On Windows:
@@ -87,7 +87,7 @@ kruskal.exe
 Enter the number of vertices, number of edges, and each edge in the format:
 
 FROM TO WEIGHT
-3.4 Run Borůvka's Algorithm
+### 3.4 Run Borůvka's Algorithm
 ./boruvka
 
 On Windows:
