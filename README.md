@@ -101,7 +101,13 @@ On Windows:
 kruskal.exe
 ```
 
-Enter the number of vertices, number of edges, and each edge in the format:
+The program will ask for:
+
+1. Number of vertices
+2. Number of edges
+3. Each edge in the format `FROM TO WEIGHT`
+
+**Example edge format:**
 
 ```text
 FROM TO WEIGHT
@@ -119,22 +125,16 @@ On Windows:
 boruvka.exe
 ```
 
-Enter the number of vertices, number of edges, and each edge in the format:
+The program will ask for:
+
+1. Number of vertices
+2. Number of edges
+3. Each edge in the format `FROM TO WEIGHT`
+
+**Example edge format:**
 
 ```text
 FROM TO WEIGHT
-```
-
-### Kruskal's Algorithm
-
-```bash
-python src/kruskal.py
-```
-
-### Borůvka's Algorithm
-
-```bash
-python src/boruvka.py
 ```
 
 ---
